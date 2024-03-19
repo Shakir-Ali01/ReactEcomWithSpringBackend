@@ -51,6 +51,7 @@ const submitForm=(event)=>{
    }
    loginUser(data).then((data)=>{
           toast.success("logged In")
+          console.log(data);
           setError({
             errorData:null,
             isError:false

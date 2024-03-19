@@ -5,23 +5,20 @@ import UserContext from "../../context/UserContext";
 import { getUser } from "../../services/userservice";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 const Profile=()=>{
     const [user,setUser]=useState(null);
     const userContext=useContext(UserContext);
+     const {userId}=useParams();
     useEffect(()=>{
-        console.log("first")
-        if(userContext.userData !=null ){
-            console.log("second")
-            getUserDataFromServer()
-        }
-    }, [userContext.userData])
+        getUserDataFromServer()
+    })
     const getUserDataFromServer=()=>{
         //api call
-        const userId=userContext.userData?.user?.userId; 
-        console.log('userId   '+userId)  
+       // const userId=userContext.userData?.user?.userId; 
+       // console.log('userId   '+userId)  
         getUser(userId)
          .then(data => {
-            console.log(data);
             setUser(data);
         }).catch(err => {
             console.log(err);
@@ -55,10 +52,10 @@ const Profile=()=>{
         }
         />)
         
-        :<h1 className="text-center alert alert-primary">User Not Found {userContext.userData?.user?.userId}</h1>}
+        :<h1 className="text-center alert alert-primary">User Not Found {userId}</h1>}
          {/* <UserProfileView 
         user={
-            {
+            {s
                 user
                 // name: "React Don",
                 // email: "reactdon@gmail.com",

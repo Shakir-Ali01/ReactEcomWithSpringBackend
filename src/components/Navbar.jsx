@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./../assets/log.PNG";
 // import { NavLink } from 'react-bootstrap';
@@ -15,6 +15,7 @@ import { getUserFromLocalStorage } from '../auth/HelperAuth';
 const CustomNavbar=()=>{
     const [show, setShow] = useState(true);
     const userContext=useContext(UserContext);
+   
     const doLogout=()=>{
       userContext.Logout()
     }
@@ -47,7 +48,7 @@ const CustomNavbar=()=>{
           </>
         )})
         <Nav.Link onClick={doLogout}>Logout</Nav.Link>
-        <Nav.Link as={NavLink} to="/users/profile">{getUserFromLocalStorage()?.email}</Nav.Link></>)
+        <Nav.Link as={NavLink} to={`/users/profile/${getUserFromLocalStorage()?.userId}`}>{getUserFromLocalStorage()?.email}</Nav.Link></>)
         :(<><Nav.Link as={NavLink} to="/login">Login</Nav.Link>
         <Nav.Link as={NavLink} to="/register">Sign Up</Nav.Link>
         </>)

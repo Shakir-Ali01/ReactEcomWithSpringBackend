@@ -7,12 +7,12 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 const Profile=()=>{
-    const [user,setUser]=useState(null);
+    const [user,setUser]=useState(null)
     const userContext=useContext(UserContext);
-     const {userId}=useParams();
+    const {userId}=useParams();
     useEffect(()=>{
-        getUserDataFromServer()
-    })
+             getUserDataFromServer()  
+    },[])
     const getUserDataFromServer=()=>{
         //api call
        // const userId=userContext.userData?.user?.userId; 
@@ -37,22 +37,8 @@ const Profile=()=>{
                     offset:3
                     }  
                 }>
-        {(user)?(   <UserProfileView 
-        user={
-            // {
-                
-            //     name: "React Don",
-            //     email: "reactdon@gmail.com",
-            //     gender: 'Male',
-            //     about: "Iam Bhai OF React World.",
-            //     roles: [{ roleId : 1,roleName: "Admin" }, {roleId : 2, roleName: "Normal"}]
-            // }
-            user
-            
-        }
-        />)
-        
-        :<h1 className="text-center alert alert-primary">User Not Found {userId}</h1>}
+        {(user)?(<UserProfileView user={user}
+        />):<h1 className="text-center alert alert-primary">User Not Found {userId}</h1>}
          {/* <UserProfileView 
         user={
             {s
